@@ -7,8 +7,19 @@ import App from "./App";
 
 import "./index.css";
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    ProductItem: {
+      keyFields: false, // disable normalization (i.e. embed within their parent object in the cache)
+    },
+    ItemCount: {
+      keyFields: false, // disable normalization (i.e. embed within their parent object in the cache)
+    },
+  },
+});
+
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache,
   link
 });
 
